@@ -1,0 +1,23 @@
+{
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "STM32",
+                "cwd": "${workspaceRoot}",
+                "executable": "build/default_project_f401ccu6.elf",
+                "request": "launch",
+                "type": "cortex-debug",
+                "servertype": "openocd",
+                "preLaunchTask": "build",
+                "gdbPath": "gdb-multiarch",
+                "svdFile": "${workspaceRoot}/STM32F401.svd",
+                // "runToEntryPoint": "main",
+                //"showDevDebugOutput": "none",
+                // Set you programmer and trget controller
+                "configFiles": [
+                    "interface/stlink.cfg",
+                    "target/stm32f4x.cfg"
+                ]
+            }
+        ]
+    }
