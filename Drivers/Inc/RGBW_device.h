@@ -16,6 +16,9 @@
 #define LED_ALWAYS_OFF		0b00
 #define LED_ALWAYS_ON		0b01
 
+#define ALL_LEDS_ALWAYS_OFF	0b00000000
+#define ALL_LEDS_ALWAYS_ON	0b01010101
+
 enum {
 	REGISTER_0,
 	REGISTER_1,
@@ -42,11 +45,16 @@ typedef enum {
 bool RGBW_device_init(const i2chw_dev_t *p_dev);
 
 /**
- * @brief Включение каждоко канала по отдельности
+ * @brief Включение каждого канала по отдельности
  */
 void RGBW_poweron_led(const i2chw_dev_t *p_dev, const RGBW_led led);
 
 /**
- * @brief Выключение каждоко канала по отдельности
+ * @brief Выключение каждого канала по отдельности
  */
 void RGBW_poweroff_led(const i2chw_dev_t *p_dev, const RGBW_led led);
+
+/**
+ * @brief Включение всех каналов одновременно
+ */
+void RGBW_poweron_all_leds(const i2chw_dev_t *p_dev);
