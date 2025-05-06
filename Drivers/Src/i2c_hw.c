@@ -7,7 +7,28 @@ static i2chw_dir_mode_t device_mode[4];
 
 i2chw_error_t I2CHW_Init(const i2chw_bus_t bus_num)
 {
+	switch (bus_num) {
+	case I2CHW_BUS_I2C0:
+		if (HAL_I2C_Init(&hi2c[0]) != HAL_OK)
+			return I2CHW_ERR_HW;
+		break;
+	case I2CHW_BUS_I2C1:
+		if (HAL_I2C_Init(&hi2c[1]) != HAL_OK)
+			return I2CHW_ERR_HW;
+		break;
+	case I2CHW_BUS_I2C2:
+		if (HAL_I2C_Init(&hi2c[2]) != HAL_OK)
+			return I2CHW_ERR_HW;
+		break;
+	case I2CHW_BUS_I2C3:
+		if (HAL_I2C_Init(&hi2c[3]) != HAL_OK)
+			return I2CHW_ERR_HW;
+		break;
+	default:
+		return I2CHW_ERR_INVALID_PARAMS;
+	}
 
+	return I2CHW_SUCCESS;
 }
 
 i2chw_error_t I2CHW_Configure(const i2chw_bus_t bus_num,
