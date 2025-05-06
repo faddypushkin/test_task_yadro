@@ -100,6 +100,13 @@ bool RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
 
 /**
  * @brief Установка цвета изменением яркости светодиодов R, G, B
+ *
+ * @param p_dev - указатель на конфигурацию I2C микросхемы с RGBW светодиодами
+ * @param red_brightness - параметр яркости красного светодиода (0 до 255)
+ * @param green_brightness - параметр яркости зелёного светодиода (0 до 255)
+ * @param blue_brightness - параметр яркости синего светодиода (0 до 255)
+ * @return true - установка цвета прошло успешно
+ * false - ошибка при передаче данных
  */
-void RGBW_set_color(const i2chw_dev_t *p_dev, const uint8_t red_brightness,
+bool RGBW_set_color(const i2chw_dev_t *p_dev, const uint8_t red_brightness,
 		const uint8_t green_brightness, const uint8_t blue_brightness);
