@@ -70,3 +70,28 @@ void RGBW_poweroff_all_leds(const i2chw_dev_t *p_dev)
 
 	I2CHW_WriteSync(p_dev, data, sizeof(data));
 }
+
+void RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
+				const uint8_t brightness)
+{
+	uint8_t data[2];
+
+	switch (led) {
+	case LED_RED_D1:
+		data[0] = REGISTER_6;
+		break;
+	case LED_GREEN_D2:
+		data[0] = REGISTER_7;
+		break;
+	case LED_BLUE_D3:
+		data[0] = REGISTER_8;
+		break;
+	case LED_WHITE_D4:
+		data[0] = REGISTER_9;
+		break;
+	}
+
+	data[1] = brightness;
+
+	I2CHW_WriteSync(p_dev, data, sizeof(data));
+}

@@ -63,3 +63,9 @@ void RGBW_poweron_all_leds(const i2chw_dev_t *p_dev);
  * @brief Выключение всех каналов одновременно
  */
 void RGBW_poweroff_all_leds(const i2chw_dev_t *p_dev);
+
+/**
+ * @brief Изменение яркости каждого канала по отдельности
+ */
+void RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
+				const uint8_t brightness);
