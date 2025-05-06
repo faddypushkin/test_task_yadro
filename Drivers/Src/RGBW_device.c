@@ -15,14 +15,20 @@ bool RGDW_device_init(const i2chw_dev_t *p_dev)
 	HAL_Delay(200);
 }
 
-void RGBW_poweron_led(const i2chw_dev_t *p_dev, RGBW_led led)
+void RGBW_poweron_led(const i2chw_dev_t *p_dev, const RGBW_led led)
 {
-	uint8_t data[] = {0, 0};
+	uint8_t reg = REGISTER_4;
+	uint8_t rx_data = 0;
+	uint8_t tx_data[] = {0, 0};
 
-	data[0] = REGISTER_4;
-	data[1] |= LED_ALWAYS_ON << (led * 2);
+	I2CHW_WriteReadSync(p_dev, &reg, sizeof(reg), &rx_data, sizeof(rx_data));
 
-	I2CHW_WriteSync(p_dev, data, sizeof(data));
+	rx_data |= LED_ALWAYS_ON << (led * 2);
+
+	tx_data[0] = reg;
+	tx_data[1] = rx_data;
+
+	I2CHW_WriteSync(p_dev, tx_data, sizeof(tx_data));
 }
 
 void RGBW_poweroff_led(const i2chw_dev_t *p_dev, const RGBW_led led)

@@ -44,7 +44,7 @@ bool RGBW_device_init(const i2chw_dev_t *p_dev);
 /**
  * @brief Включение каждоко канала по отдельности
  */
-void RGBW_poweron_led(const i2chw_dev_t *p_dev, RGBW_led led);
+void RGBW_poweron_led(const i2chw_dev_t *p_dev, const RGBW_led led);
 
 /**
  * @brief Выключение каждоко канала по отдельности
