@@ -1,6 +1,8 @@
 /**
  * @brief Драйвер микросхемы с RGBW светодиодами
  */
+#ifndef DRIVER_RGBW_DEVICE_H
+#define DRIVER_RGBW_DEVICE_H
 
 #include <stdbool.h>
 
@@ -110,3 +112,5 @@ bool RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
  */
 bool RGBW_set_color(const i2chw_dev_t *p_dev, const uint8_t red_brightness,
 		const uint8_t green_brightness, const uint8_t blue_brightness);
+
+#endif // DRIVER_RGBW_DEVICE_H
