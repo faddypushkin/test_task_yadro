@@ -53,7 +53,8 @@ bool RGBW_poweroff_led(const i2chw_dev_t *p_dev, const RGBW_led led)
 	uint8_t tx_data[] = {0, 0};
 	i2chw_error_t ret;
 
-	ret = I2CHW_WriteReadSync(p_dev, &reg, sizeof(reg), &rx_data, sizeof(rx_data));
+	ret = I2CHW_WriteReadSync(p_dev, &reg, sizeof(reg), &rx_data,
+					sizeof(rx_data));
 	if (ret != I2CHW_SUCCESS)
 		return false;
 
@@ -69,14 +70,19 @@ bool RGBW_poweroff_led(const i2chw_dev_t *p_dev, const RGBW_led led)
 	return true;
 }
 
-void RGBW_poweron_all_leds(const i2chw_dev_t *p_dev)
+bool RGBW_poweron_all_leds(const i2chw_dev_t *p_dev)
 {
 	uint8_t data[] = {0, 0};
+	i2chw_error_t ret;
 
 	data[0] = REGISTER_4;
 	data[1] |= ALL_LEDS_ALWAYS_ON;
 
-	I2CHW_WriteSync(p_dev, data, sizeof(data));
+	ret = I2CHW_WriteSync(p_dev, data, sizeof(data));
+	if (ret != I2CHW_SUCCESS)
+		return false;
+
+	return true;
 }
 
 void RGBW_poweroff_all_leds(const i2chw_dev_t *p_dev)
