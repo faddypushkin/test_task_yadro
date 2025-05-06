@@ -1,3 +1,7 @@
+DSP/
+Templates/
+Examples/
+NN/
 *.o
 *.d
 *.lst
