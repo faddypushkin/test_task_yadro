@@ -88,8 +88,14 @@ bool RGBW_poweroff_all_leds(const i2chw_dev_t *p_dev);
 
 /**
  * @brief Изменение яркости каждого канала по отдельности
+ *
+ * @param p_dev - указатель на конфигурацию I2C микросхемы с RGBW светодиодами
+ * @param led - светодиод, с которым будем производить действие
+ * @param brightness - параметр яркости светодиода (0 до 255)
+ * @return true - изменение яркости прошло успешно
+ * false - ошибка при передаче данных
  */
-void RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
+bool RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
 				const uint8_t brightness);
 
 /**

@@ -100,10 +100,11 @@ bool RGBW_poweroff_all_leds(const i2chw_dev_t *p_dev)
 	return true;
 }
 
-void RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
+bool RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
 				const uint8_t brightness)
 {
 	uint8_t data[2];
+	i2chw_error_t ret;
 
 	switch (led) {
 	case LED_RED_D1:
@@ -122,7 +123,11 @@ void RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
 
 	data[1] = brightness;
 
-	I2CHW_WriteSync(p_dev, data, sizeof(data));
+	ret = I2CHW_WriteSync(p_dev, data, sizeof(data));
+	if (ret != I2CHW_SUCCESS)
+		return false;
+
+	return true;
 }
 
 void RGBW_set_color(const i2chw_dev_t *p_dev, const uint8_t red_brightness,
