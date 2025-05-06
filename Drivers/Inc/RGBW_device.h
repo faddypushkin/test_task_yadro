@@ -69,3 +69,9 @@ void RGBW_poweroff_all_leds(const i2chw_dev_t *p_dev);
  */
 void RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
 				const uint8_t brightness);
+
+/**
+ * @brief Установка цвета изменением яркости светодиодов R, G, B
+ */
+void RGBW_set_color(const i2chw_dev_t *p_dev, const uint8_t red_brightness,
+		const uint8_t green_brightness, const uint8_t blue_brightness);

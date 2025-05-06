@@ -95,3 +95,11 @@ void RGBW_change_brightness_led(const i2chw_dev_t *p_dev, const RGBW_led led,
 
 	I2CHW_WriteSync(p_dev, data, sizeof(data));
 }
+
+void RGBW_set_color(const i2chw_dev_t *p_dev, const uint8_t red_brightness,
+	const uint8_t green_brightness, const uint8_t blue_brightness)
+{
+	RGBW_change_brightness_led(p_dev, LED_RED_D1, red_brightness);
+	RGBW_change_brightness_led(p_dev, LED_GREEN_D2, green_brightness);
+	RGBW_change_brightness_led(p_dev, LED_BLUE_D3, red_brightness);
+}
