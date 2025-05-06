@@ -60,8 +60,13 @@ bool RGBW_poweron_led(const i2chw_dev_t *p_dev, const RGBW_led led);
 
 /**
  * @brief Выключение каждого канала по отдельности
+ *
+ * @param p_dev - указатель на конфигурацию I2C микросхемы с RGBW светодиодами
+ * @param led - светодиод, с которым будем производить действие
+ * @return true - выключение прошло успешно
+ * false - ошибка при передаче данных
  */
-void RGBW_poweroff_led(const i2chw_dev_t *p_dev, const RGBW_led led);
+bool RGBW_poweroff_led(const i2chw_dev_t *p_dev, const RGBW_led led);
 
 /**
  * @brief Включение всех каналов одновременно
