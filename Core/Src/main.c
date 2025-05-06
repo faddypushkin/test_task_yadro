@@ -1,4 +1,5 @@
 #include "main.h"
+#include "i2c_hw.h"
 
 I2C_HandleTypeDef hi2c1;
 
