@@ -56,3 +56,13 @@ void RGBW_poweron_all_leds(const i2chw_dev_t *p_dev)
 
 	I2CHW_WriteSync(p_dev, data, sizeof(data));
 }
+
+void RGBW_poweroff_all_leds(const i2chw_dev_t *p_dev)
+{
+	uint8_t data[2];
+
+	data[0] = REGISTER_4;
+	data[1] &= ALL_LEDS_ALWAYS_OFF;
+
+	I2CHW_WriteSync(p_dev, data, sizeof(data));
+}
