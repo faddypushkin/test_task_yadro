@@ -6,13 +6,16 @@
 
 bool RGDW_device_init(const i2chw_dev_t *p_dev)
 {
-	uint8_t reset_data[] = {0, 0};
+	uint8_t data[] = {0, 0};
+	i2chw_error_t ret;
 
-	reset_data[0] = REGISTER_0;		//Будем записывать в регистр 0
-	reset_data[1] |= RESET_COMPLETE_CHIP;	//Сброс микросхемы
-	reset_data[1] |= DEVICE_ALWAYS_ON << 3;	//По заданию микросхема всегда включена
+	data[0] = REGISTER_0;			//Будем записывать в регистр 0
+	data[1] |= RESET_COMPLETE_CHIP;		//Сброс микросхемы
+	data[1] |= DEVICE_ALWAYS_ON << 3;	//По заданию микросхема всегда включена
 
-	I2CHW_WriteSync(p_dev, reset_data, sizeof(reset_data));
+	ret = I2CHW_WriteSync(p_dev, data, sizeof(data));
+	if (ret != I2CHW_SUCCESS)
+		return false;
 
 	HAL_Delay(200);
 

@@ -41,6 +41,10 @@ typedef enum {
 
 /**
  * @brief Первоначальная инициализация микросхемы
+ *
+ * @param p_dev - указатель на конфигурацию I2C микросхемы с RGBW светодиодами
+ * @return true - инициализация прошла успешно
+ * false - ошибка при передаче данных
  */
 bool RGBW_device_init(const i2chw_dev_t *p_dev);
 
