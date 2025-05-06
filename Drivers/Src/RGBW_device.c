@@ -14,3 +14,13 @@ bool RGDW_device_init(const i2chw_dev_t *p_dev)
 
 	HAL_Delay(200);
 }
+
+void RGBW_poweron_led(const i2chw_dev_t *p_dev, RGBW_led led)
+{
+	uint8_t data[] = {0, 0};
+
+	data[0] = REGISTER_4;
+	data[1] |= LED_ALWAYS_ON << (led * 2);
+
+	I2CHW_WriteSync(p_dev, data, sizeof(data));
+}

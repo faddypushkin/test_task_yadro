@@ -1,5 +1,5 @@
 /**
- * @brief Драйвер микросхемы с RGDW светодиодами
+ * @brief Драйвер микросхемы с RGBW светодиодами
  */
 
 #include <stdbool.h>
@@ -12,6 +12,9 @@
 
 #define DEVICE_ENTERS_SHUTDOWN	0b00
 #define DEVICE_ALWAYS_ON	0b11
+
+#define LED_ALWAYS_OFF		0b00
+#define LED_ALWAYS_ON		0b01
 
 enum {
 	REGISTER_0,
@@ -26,7 +29,19 @@ enum {
 	REGISTER_9,
 };
 
+typedef enum {
+	LED_RED_D1,
+	LED_GREEN_D2,
+	LED_BLUE_D3,
+	LED_WHITE_D4,
+} RGBW_led;
+
 /**
  * @brief Первоначальная инициализация микросхемы
  */
-bool RGDW_device_init(const i2chw_dev_t *p_dev);
+bool RGBW_device_init(const i2chw_dev_t *p_dev);
+
+/**
+ * @brief Включение каждоко канала по отдельности
+ */
+void RGBW_poweron_led(const i2chw_dev_t *p_dev, RGBW_led led);
