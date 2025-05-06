@@ -2,6 +2,8 @@
 
 #include <stdint.h>
 
+#include "stm32f4xx_hal.h"
+
 bool RGDW_device_init(const i2chw_dev_t *p_dev)
 {
 	uint8_t reset_data[] = {0, 0};
@@ -13,6 +15,8 @@ bool RGDW_device_init(const i2chw_dev_t *p_dev)
 	I2CHW_WriteSync(p_dev, reset_data, sizeof(reset_data));
 
 	HAL_Delay(200);
+
+	return true;
 }
 
 void RGBW_poweron_led(const i2chw_dev_t *p_dev, const RGBW_led led)
